@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiran Kumar Maddipati - Data Analytics Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e0eafc, #cfdef3);
+            color: #333;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(90deg, #0078d4, #00c4cc);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 5px solid #fff;
+            animation: fadeIn 1s ease-in;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 48px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+            animation: typewriter 2s steps(30) 1s forwards;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid white;
+        }
+        .header p {
+            font-size: 20px;
+            opacity: 0;
+            animation: fadeInText 1s 2.5s forwards;
+        }
+        .section {
+            padding: 60px 0;
+        }
+        .section h2 {
+            color: #0078d4;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .section h2::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background: #00c4cc;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .projects, .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .project-card, .skill-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .project-card:hover, .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .loader {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #00c4cc;
+            border-top: 3px solid #0078d4;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        .project-card h3, .skill-card h3 {
+            color: #0078d4;
+            margin-top: 0;
+        }
+        .chart {
+            width: 100%;
+            height: 10px;
+            background: #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .chart-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #0078d4, #00c4cc);
+            border-radius: 5px;
+            animation: loadChart 2s ease-out forwards;
+        }
+        .contact {
+            background: linear-gradient(90deg, #0078d4, #00c4cc);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            border-top: 5px solid #fff;
+        }
+        .contact a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .contact a:hover {
+            text-decoration: underline;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #00c4cc;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .btn:hover {
+            background: #0078d4;
+            transform: scale(1.1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; border-right: none; }
+        }
+        @keyframes fadeInText {
+            from { opacity: 0; }
+            to { opacity: 0.9; }
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes loadChart {
+            from { width: 0; }
+            to { width: var(--chart-width); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>Kiran Kumar Maddipati</h1>
+            <p>Data Analytics & Cloud Architect | 7+ Years of Impact</p>
+            <a href="#contact" class="btn">Let’s Connect</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h2>About Me</h2>
+            <p style="text-align: center; font-size: 18px;">I’m a data trailblazer—Microsoft Certified Azure Cloud Architect—crunching numbers into profits. I’ve cut costs by 20%, accelerated workflows by 25%, and slashed manpower by 60%. Ready to transform your data?</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h2>Key Data Projects</h2>
+            <div class="projects">
+                <div class="project-card">
+                    <div class="loader"></div>
+                    <h3>Cost Estimator on Snowflake</h3>
+                    <p>Built a tool to streamline cloud cost analytics.</p>
+                    <p><strong>Impact:</strong> Reduced costs by 20%.</p>
+                    <p><strong>Tech:</strong> Snowflake, SQL, Azure DevOps</p>
+                </div>
+                <div class="project-card">
+                    <div class="loader"></div>
+                    <h3>Accretor for MS Fabric</h3>
+                    <p>Engineered a data migration powerhouse.</p>
+                    <p><strong>Impact:</strong> Cut manpower by 60%.</p>
+                    <p><strong>Tech:</strong> MS Fabric, Azure</p>
+                </div>
+                <div class="project-card">
+                    <div class="loader"></div>
+                    <h3>Tableau to Power BI Migration</h3>
+                    <p>Designed a tool for seamless BI transitions.</p>
+                    <p><strong>Impact:</strong> Slashed migration costs by 50%.</p>
+                    <p><strong>Tech:</strong> Power BI, Tableau</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h2>Data Skills</h2>
+            <div class="skills">
+                <div class="skill-card">
+                    <h3>Cloud Analytics</h3>
+                    <p>Azure Synapse, Data Factory, Databricks</p>
+                    <div class="chart"><div class="chart-bar" style="--chart-width: 90%;"></div></div>
+                </div>
+                <div class="skill-card">
+                    <h3>BI Visualization</h3>
+                    <p>Power BI, MSBI, SSRS</p>
+                    <div class="chart"><div class="chart-bar" style="--chart-width: 95%;"></div></div>
+                </div>
+                <div class="skill-card">
+                    <h3>Data Engineering</h3>
+                    <p>Snowflake, SnapLogic, SSIS</p>
+                    <div class="chart"><div class="chart-bar" style="--chart-width: 85%;"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h2>Certifications</h2>
+            <p style="text-align: center;">Microsoft Azure Solutions Architect Expert | Power BI Developer | Snowflake SnowPro Core</p>
+        </div>
+    </div>
+
+    <div class="contact" id="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <p>Email: <a href="mailto:kirankumarmaddipati@gmail.com">kirankumarmaddipati@gmail.com</a></p>
+            <p>Phone: <a href="tel:+917989184343">+91-7989184343</a></p>
+        </div>
+    </div>
+</body>
+</html>
