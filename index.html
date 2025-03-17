@@ -3,343 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiran Kumar Maddipati - Data Maestro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Kiran Kumar Maddipati - Data Trailblazer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Mono&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #1e1e2f, #2a2a4a);
+            background: #0a0f2b;
             color: #fff;
             overflow-x: hidden;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 30px;
         }
         .header {
-            background: linear-gradient(90deg, #00d4ff, #0078d4);
+            background: linear-gradient(135deg, #1a237e, #3949ab);
             text-align: center;
-            padding: 100px 20px;
+            padding: 120px 20px;
             position: relative;
             overflow: hidden;
-            background-image: url('https://images.unsplash.com/photo-1620282948297-8d70644a8e97?q=80&w=1932&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.9;
         }
         .header h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 50px;
+            font-family: 'Space Mono', monospace;
+            font-size: 48px;
             margin: 0;
-            animation: glitch 2s infinite;
+            letter-spacing: 2px;
+            animation: slideIn 1s ease-out;
         }
         .header p {
-            font-size: 22px;
-            opacity: 0;
-            animation: fadeInText 1s 2s forwards;
+            font-size: 20px;
+            color: #c5cae9;
+            animation: fadeIn 1.5s ease-in;
         }
-        .data-flow {
+        .data-lines {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: repeating-linear-gradient(45deg, rgba(0,212,255,0.1), rgba(0,212,255,0.1) 10px, transparent 10px, transparent 20px);
-            animation: flow 5s linear infinite;
+            background: linear-gradient(to bottom, rgba(76,175,80,0.1) 1px, transparent 1px);
+            background-size: 100% 20px;
+            animation: scrollLines 10s linear infinite;
         }
         .section {
             padding: 80px 0;
             position: relative;
         }
         .section h2 {
-            font-family: 'Orbitron', sans-serif;
-            color: #00d4ff;
-            font-size: 36px;
+            font-family: 'Space Mono', monospace;
+            color: #4caf50;
+            font-size: 32px;
             text-align: center;
             margin-bottom: 50px;
-            text-shadow: 0 0 10px #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .bg-image {
+        .bg-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.2;
+            opacity: 0.1;
             z-index: -1;
-            background-size: cover;
-            background-position: center;
-            filter: blur(5px);
+            background: radial-gradient(circle, #ab47bc 10%, transparent 50%);
         }
         .projects, .skills-grid, .expertise {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 25px;
         }
         .project-card, .skill-card, .expertise-card {
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            perspective: 1000px;
-            transition: transform 0.6s;
+            background: rgba(26, 35, 126, 0.2);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #3949ab;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
         .project-card:hover, .skill-card:hover, .expertise-card:hover {
-            transform: rotateY(180deg);
+            border-color: #ab47bc;
+            box-shadow: 0 0 15px rgba(171, 71, 188, 0.5);
         }
-        .project-card .front, .skill-card .front, .expertise-card .front, 
-        .project-card .back, .skill-card .back, .expertise-card .back {
+        .project-card::before, .skill-card::before, .expertise-card::before {
+            content: '';
             position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(76,175,80,0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-        .project-card .front, .skill-card .front, .expertise-card .front {
-            z-index: 2;
-        }
-        .project-card .back, .skill-card .back, .expertise-card .back {
-            transform: rotateY(180deg);
-            background: #0078d4;
-            padding: 20px;
-            border-radius: 15px;
+        .project-card:hover::before, .skill-card:hover::before, .expertise-card:hover::before {
+            opacity: 1;
+            animation: orbitGlow 4s linear infinite;
         }
         .project-card h3, .skill-card h3, .expertise-card h3 {
-            color: #00d4ff;
+            color: #4caf50;
             margin-top: 0;
+            font-family: 'Space Mono', monospace;
         }
-        .data-particle {
+        .data-dot {
             position: absolute;
-            width: 5px;
-            height: 5px;
-            background: #00d4ff;
+            width: 6px;
+            height: 6px;
+            background: #ab47bc;
             border-radius: 50%;
-            animation: particle 3s infinite;
+            animation: floatDot 5s infinite;
         }
         .chart {
             width: 100%;
-            height: 15px;
-            background: rgba(255,255,255,0.2);
+            height: 12px;
+            background: rgba(255,255,255,0.1);
             border-radius: 5px;
             margin-top: 10px;
             overflow: hidden;
         }
         .chart-bar {
             height: 100%;
-            background: #00d4ff;
-            animation: loadChart 2s ease-out forwards, pulseGlow 1.5s infinite;
+            background: linear-gradient(90deg, #4caf50, #ab47bc);
+            animation: loadChart 2s ease-out forwards;
         }
         .contact {
-            background: linear-gradient(90deg, #0078d4, #00d4ff);
+            background: linear-gradient(135deg, #1a237e, #3949ab);
             text-align: center;
-            padding: 50px;
+            padding: 60px;
             position: relative;
-            background-image: url('https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=1932&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.9;
         }
         .contact a {
-            color: #fff;
+            color: #c5cae9;
             text-decoration: none;
             font-weight: bold;
         }
         .btn {
-            padding: 12px 25px;
-            background: #00d4ff;
-            color: #1e1e2f;
-            border-radius: 30px;
+            padding: 12px 30px;
+            background: linear-gradient(90deg, #4caf50, #ab47bc);
+            color: #fff;
+            border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .btn:hover {
-            transform: scale(1.2);
-            box-shadow: 0 0 20px #00d4ff;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(171, 71, 188, 0.7);
         }
 
         /* Animations */
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(2px, -2px); }
-            60% { transform: translate(-2px, 0); }
-            80% { transform: translate(2px, 0); }
-            100% { transform: translate(0); }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
-        @keyframes fadeInText {
+        @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        @keyframes flow {
+        @keyframes scrollLines {
             0% { background-position: 0 0; }
-            100% { background-position: 100px 100px; }
+            100% { background-position: 0 100px; }
         }
-        @keyframes particle {
-            0% { transform: translateY(0) scale(1); opacity: 1; }
-            100% { transform: translateY(-100vh) scale(0); opacity: 0; }
+        @keyframes floatDot {
+            0% { transform: translate(0, 0); opacity: 1; }
+            50% { transform: translate(20px, -20px); opacity: 0.5; }
+            100% { transform: translate(0, 0); opacity: 1; }
         }
         @keyframes loadChart {
             from { width: 0; }
             to { width: var(--chart-width); }
         }
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 5px #00d4ff; }
-            50% { box-shadow: 0 0 15px #00d4ff; }
-            100% { box-shadow: 0 0 5px #00d4ff; }
+        @keyframes orbitGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <div class="data-flow"></div>
+        <div class="data-lines"></div>
         <div class="container">
             <h1>Kiran Kumar Maddipati</h1>
-            <p>Data Maestro | Azure Cloud Architect | BI Innovator</p>
-            <a href="#contact" class="btn">Unlock Insights</a>
+            <p>Data Trailblazer | Azure Architect | BI Visionary</p>
+            <a href="#contact" class="btn">Explore My Orbit</a>
         </div>
     </div>
 
     <div class="section">
-        <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1639325677969-97db7f71fc39?q=80&w=1932&auto=format&fit=crop');"></div>
+        <div class="bg-overlay"></div>
         <div class="container">
             <h2>About Me</h2>
-            <p style="text-align: center; font-size: 18px;">I’m a data visionary—turning chaos into clarity with 7+ years of Azure & BI mastery. From slashing costs by 20% to boosting efficiency by 60%, I architect solutions that redefine success.</p>
+            <p style="text-align: center; font-size: 18px;">I navigate the data cosmos— 8+ years crafting Azure & BI solutions. I’ve slashed costs by 20%, accelerated workflows by 25%, and boosted efficiency by 60%. Ready to launch your data journey?</p>
         </div>
     </div>
 
     <div class="section">
-        <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1614850523459-c2f8c0c1528c?q=80&w=1932&auto=format&fit=crop');"></div>
+        <div class="bg-overlay"></div>
         <div class="container">
-            <h2>Data Expeditions</h2>
+            <h2>Data Missions</h2>
             <div class="projects">
                 <div class="project-card">
-                    <div class="front">
-                        <h3>Snowflake Cost Vortex</h3>
-                        <p>Spun a tool to tame cloud expenses.</p>
-                        <p><strong>Impact:</strong> 20% cost reduction.</p>
-                    </div>
-                    <div class="back">
-                        <p><strong>Tech:</strong> Snowflake, SQL, Azure DevOps</p>
-                        <div class="data-particle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
-                        <div class="data-particle" style="top: 50%; left: 80%; animation-delay: 1s;"></div>
-                    </div>
+                    <h3>Snowflake Cost Scan</h3>
+                    <p>Probed cloud expenses with precision.</p>
+                    <p><strong>Impact:</strong> 20% cost reduction</p>
+                    <p><strong>Tech:</strong> Snowflake, SQL, Azure DevOps</p>
+                    <div class="data-dot" style="top: 10%; left: 90%; animation-delay: 0s;"></div>
                 </div>
                 <div class="project-card">
-                    <div class="front">
-                        <h3>Fabric Data Warp</h3>
-                        <p>Warped data migration into efficiency.</p>
-                        <p><strong>Impact:</strong> 60% manpower cut.</p>
-                    </div>
-                    <div class="back">
-                        <p><strong>Tech:</strong> MS Fabric, Azure</p>
-                        <div class="data-particle" style="top: 30%; left: 40%; animation-delay: 0.5s;"></div>
-                    </div>
+                    <h3>Fabric Sync Pulse</h3>
+                    <p>Synced data flows for max efficiency.</p>
+                    <p><strong>Impact:</strong> 60% manpower cut</p>
+                    <p><strong>Tech:</strong> MS Fabric, Azure</p>
+                    <div class="data-dot" style="top: 80%; left: 20%; animation-delay: 1s;"></div>
                 </div>
                 <div class="project-card">
-                    <div class="front">
-                        <h3>BI Dimension Shift</h3>
-                        <p>Shifted Tableau to Power BI seamlessly.</p>
-                        <p><strong>Impact:</strong> 50% cost savings.</p>
-                    </div>
-                    <div class="back">
-                        <p><strong>Tech:</strong> Power BI, Tableau</p>
-                        <div class="data-particle" style="top: 70%; left: 60%; animation-delay: 1.5s;"></div>
-                    </div>
+                    <h3>BI Warp Drive</h3>
+                    <p>Accelerated Tableau to Power BI shift.</p>
+                    <p><strong>Impact:</strong> 60% cost savings</p>
+                    <p><strong>Tech:</strong> Power BI, Tableau</p>
+                    <div class="data-dot" style="top: 50%; left: 80%; animation-delay: 2s;"></div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="section">
-        <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1614853316706-5bc1831b0b73?q=80&w=1932&auto=format&fit=crop');"></div>
+        <div class="bg-overlay"></div>
         <div class="container">
-            <h2>Data Arsenal</h2>
+            <h2>Data Toolkit</h2>
             <div class="skills-grid">
                 <div class="skill-card">
-                    <div class="front">
-                        <h3>Cloud Matrix</h3>
-                        <p>Azure Synapse, Data Factory</p>
-                        <div class="chart"><div class="chart-bar" style="--chart-width: 90%;"></div></div>
-                    </div>
-                    <div class="back">
-                        <p>Mastered cloud analytics workflows.</p>
-                    </div>
+                    <h3>Cloud Core</h3>
+                    <p> MS Fabric, MS Azure, Snowflake, Databricks</p>
+                    <div class="chart"><div class="chart-bar" style="--chart-width: 90%;"></div></div>
                 </div>
                 <div class="skill-card">
-                    <div class="front">
-                        <h3>BI Cosmos</h3>
-                        <p>Power BI, MSBI, SSRS</p>
-                        <div class="chart"><div class="chart-bar" style="--chart-width: 95%;"></div></div>
-                    </div>
-                    <div class="back">
-                        <p>Visualized data universes.</p>
-                    </div>
+                    <h3>BI Engine</h3>
+                    <p>Power BI, MSBI, SSRS</p>
+                    <div class="chart"><div class="chart-bar" style="--chart-width: 95%;"></div></div>
                 </div>
                 <div class="skill-card">
-                    <div class="front">
-                        <h3>Data Forge</h3>
-                        <p>Snowflake, SnapLogic</p>
-                        <div class="chart"><div class="chart-bar" style="--chart-width: 85%;"></div></div>
-                    </div>
-                    <div class="back">
-                        <p>Forged data pipelines.</p>
-                    </div>
+                    <h3>Data Forge</h3>
+                    <p>Snowflake, SnapLogic</p>
+                    <div class="chart"><div class="chart-bar" style="--chart-width: 85%;"></div></div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="section">
-        <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1620121478247-ec408b60e53f?q=80&w=1932&auto=format&fit=crop');"></div>
+        <div class="bg-overlay"></div>
         <div class="container">
-            <h2>Expertise Vault</h2>
+            <h2>Skill Matrix</h2>
             <div class="expertise">
                 <div class="expertise-card">
-                    <div class="front">
-                        <h3>Technical Skills</h3>
-                        <p>MS Fabric, MSBI, Power BI, SnapLogic, Snowflake, SQL, Azure Synapse, Data Factory, Azure DevOps, Databricks</p>
-                    </div>
-                    <div class="back">
-                        <p>Data pipelines, cloud orchestration, and BI visualization.</p>
-                    </div>
+                    <h3>Tech Stack</h3>
+                    <p>MS Fabric, MSBI, Power BI, SnapLogic, Snowflake, SQL, Azure Synapse, Data Factory, Azure DevOps, Databricks</p>
+                    <div class="data-dot" style="top: 20%; left: 85%; animation-delay: 0.5s;"></div>
                 </div>
                 <div class="expertise-card">
-                    <div class="front">
-                        <h3>Business Skills</h3>
-                        <p>Stakeholder Management, Problem Solving, Emotional Intelligence, Communication, Agility</p>
-                    </div>
-                    <div class="back">
-                        <p>Bridging tech and business for impact.</p>
-                    </div>
+                    <h3>Business Edge</h3>
+                    <p>Stakeholder Management, Problem Solving, Pre Sales, Emotional Intelligence, Communication, Agility</p>
+                    <div class="data-dot" style="top: 70%; left: 15%; animation-delay: 1.5s;"></div>
                 </div>
                 <div class="expertise-card">
-                    <div class="front">
-                        <h3>Data Mastery</h3>
-                        <p>ETL Frameworks, Data Warehousing, Power BI Deployments, Snowflake Streams, SSIS/SSRS</p>
-                    </div>
-                    <div class="back">
-                        <p>Transforming raw data into gold.</p>
-                    </div>
+                    <h3>Data Craft</h3>
+                    <p>ETL Frameworks, Data Warehousing, Power BI Deployments, Snowflake , SSIS/SSRS</p>
+                    <div class="data-dot" style="top: 40%; left: 90%; animation-delay: 2s;"></div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="section">
-        <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1932&auto=format&fit=crop');"></div>
+        <div class="bg-overlay"></div>
         <div class="container">
-            <h2>Data Seals</h2>
-            <p style="text-align: center;">Azure Solutions Architect Expert | Power BI Developer | Snowflake SnowPro Core</p>
+            <h2>Certifications</h2>
+            <p style="text-align: center;"> MS Fabric | Azure Solutions Architect Expert | Power BI Developer | Snowflake SnowPro Core</p>
         </div>
     </div>
 
     <div class="contact" id="contact">
+        <div class="data-lines"></div>
         <div class="container">
-            <h2>Connect the Data Dots</h2>
+            <h2>Link Up</h2>
             <p>Email: <a href="mailto:kirankumarmaddipati@gmail.com">kirankumarmaddipati@gmail.com</a></p>
             <p>Phone: <a href="tel:+917989184343">+91-7989184343</a></p>
         </div>
