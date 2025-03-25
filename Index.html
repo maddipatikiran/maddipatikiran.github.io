@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiran Kumar Maddipati - Data Architect Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9;
+  text-align: center;
+  position: relative;
+}
+
+header {
+  background: linear-gradient(to bottom, #1e3a8a, #3b82f6);
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 60px 30px;
+  border-radius: 12px;
+  animation: headerFade 3s ease forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes headerFade {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Pie Chart Animation Container */
+.pie-chart-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+}
+
+/* Pie Chart Styles */
+.pie-chart {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: conic-gradient(#9ab300 0% 60%, #d1d5db 60% 100%);
+  position: relative;
+  animation: none;
+}
+
+.pie-chart.left {
+  animation: collideLeft 3s ease forwards;
+}
+
+.pie-chart.right {
+  animation: collideRight 3s ease forwards;
+}
+
+/* Collision Animations */
+@keyframes collideLeft {
+  0% { transform: translateX(-200%); }
+  70% { transform: translateX(0); }
+  85% { transform: scale(1.2); }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+@keyframes collideRight {
+  0% { transform: translateX(200%); }
+  70% { transform: translateX(0); }
+  85% { transform: scale(1.2); }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+/* Blast Effect */
+.blast {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #9ab300, transparent);
+  border-radius: 50%;
+  opacity: 0;
+  animation: blastEffect 0.7s ease 2.1s forwards;
+}
+
+@keyframes blastEffect {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(15); opacity: 0; }
+}
+
+header h1 {
+  font-size: 3em;
+  color: #d0f400;
+  position: relative;
+  z-index: 2;
+}
+
+header p {
+  position: relative;
+  z-index: 2;
+}
+
+nav, section, footer {
+  background-color: #ffffff;
+  border-radius: 12px;
+  margin: 20px auto;
+  padding: 30px;
+  max-width: 1200px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+nav a {
+  color: #115f9a;
+  margin: 0 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover {
+  color: #22a7f0;
+  transform: scale(1.1);
+}
+
+h2 {
+  color: #115f9a;
+  margin-bottom: 25px;
+  font-size: 2em;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+.skills, .projects, .certifications, .accelerators {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  color: #37474F;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  transition: transform 0.5s ease, background 0.3s ease;
+  width: 350px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Skills Section Colors */
+.skills .card:nth-child(1) { background: #bbdefb; }
+.skills .card:nth-child(2) { background: #e1bee7; }
+.skills .card:nth-child(3) { background: #c8e6c9; }
+.skills .card:nth-child(4) { background: #ffe0b2; }
+.skills .card:nth-child(5) { background: #f8bbd0; }
+.skills .card:nth-child(6) { background: #e6ee9c; }
+.skills .card:nth-child(7) { background: #b2dfdb; }
+.skills .card:nth-child(8) { background: #ffcc80; }
+.skills .card:hover {
+  transform: scale(1.05);
+  background: #d5d5d5;
+}
+
+/* Projects Section Colors */
+.projects .card:nth-child(1) { background: #cdb4db; }
+.projects .card:nth-child(2) { background: #bde0fe; }
+.projects .card:nth-child(3) { background: #74c69d; }
+.projects .card:hover {
+  transform: scale(1.05);
+  background: #d5d5d5;
+}
+
+/* Certifications Section Colors */
+.certifications .card:nth-child(1) { background: #b2dfdb; }
+.certifications .card:nth-child(2) { background: #ffcc80; }
+.certifications .card:nth-child(3) { background: #c5cae9; }
+.certifications .card:nth-child(4) { background: #ef9a9a; }
+.certifications .card:nth-child(5) { background: #bbdefb; }
+.certifications .card:hover {
+  transform: scale(1.05);
+  background: #d5d5d5;
+}
+
+/* Accelerator Flip Cards */
+.accelerators {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 350px;
+  height: 250px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55), box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 12px;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg) scale(1.05);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+}
+
+@keyframes flipPulse {
+  0% { transform: rotateY(0deg) scale(1); }
+  25% { transform: rotateY(15deg) scale(1.03); }
+  50% { transform: rotateY(0deg) scale(1); }
+  75% { transform: rotateY(-15deg) scale(1.03); }
+  100% { transform: rotateY(0deg) scale(1); }
+}
+
+@keyframes flipBounce {
+  0% { transform: rotateY(0deg) scale(1); }
+  40% { transform: rotateY(190deg) scale(1.08); }
+  70% { transform: rotateY(170deg) scale(1.03); }
+  100% { transform: rotateY(180deg) scale(1.05); }
+}
+
+.flip-card:not(:hover) .flip-card-inner {
+  animation: flipPulse 3s infinite ease-in-out;
+}
+
+.flip-card:hover .flip-card-inner {
+  animation: flipBounce 0.8s ease forwards;
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  color: #fff;
+}
+
+.flip-card-front { background-color: #48b5c4; }
+.flip-card-back {
+  background-color: #76c68f;
+  transform: rotateY(180deg);
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #c9e52f;
+  color: #37474F;
+  text-decoration: none;
+  border-radius: 6px;
+  margin-top: 20px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #d0f400;
+  transform: scale(1.05);
+}
+
+p, a { font-size: 1.1em; line-height: 1.6; }
+
+/* Contact Section Icons */
+.contact-icon {
+  margin-right: 10px;
+  color: #115f9a;
+  font-size: 1.2em;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(50px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Animated Scroll to Top Arrow */
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #115f9a;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.scroll-to-top.show {
+  opacity: 0.8;
+  visibility: visible;
+  animation: bounceIn 0.6s ease forwards;
+}
+
+.scroll-to-top:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  background-color: #22a7f0;
+}
+
+.scroll-to-top.show:not(:hover) {
+  animation: pulseArrow 1.5s infinite ease-in-out;
+}
+
+.scroll-to-top::before {
+  content: "\2191";
+  font-size: 24px;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes pulseArrow {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="pie-chart-container">
+    <div class="pie-chart left"></div>
+    <div class="pie-chart right"></div>
+    <div class="blast"></div>
+  </div>
+  <h1>Kiran Kumar Maddipati</h1>
+  <p>Microsoft Certified Azure Cloud Architect| Data Engineering | Freelancer | Consultant</p>
+</header>
+
+<nav>
+  <a href="#about">About Me</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#certifications">Certifications</a>
+  <a href="#accelerators">Accelerators</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p>Microsoft Certified Azure Cloud Architect with 8+ years of experience in Data Analytics, Business Intelligence, and Cloud Solutions. Proficient in SQL, MS Fabric, Snowflake, Power BI, MSBI, and Azure BI, delivering customized solutions to improve efficiency. Experienced in consulting, freelancing, and pre-sales activities, including solutioning and client engagement. Skilled in designing BI architectures, leading cross-functional teams, and driving business impact through data-driven strategies. </p>
+</section>
+
+<section id="skills">
+  <h2> Skills</h2>
+  <div class="skills">
+    <div class="card"><strong>Cloud Platforms:</strong><br>Microsoft Azure,AWS </div>
+    <div class="card"><strong>Databases:</strong><br>SQL Server,Oracle</div>
+    <div class="card"><strong>BI Tools:</strong><br>Power BI,Tableaue,SSRS</div>
+    <div class="card"><strong>ETL Tools:</strong><br>SnapLogic, Azure Data Factory, SSIS</div>
+    <div class="card"><strong>Data Platforms:</strong><br>MS Fabric, Databricks, Snowflake</div>
+    <div class="card"><strong>Version Control:</strong><br>GitHub,Azure Devops</div>
+    <div class="card"><strong>Presales:</strong><br>Technical Demonstrations, RFPs, SOW, Solutions Design</div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Key Projects</h2>
+  <div class="projects">
+    <div class="card">
+      <h3>Snowflake Cost Estimator</h3>
+      <p>Developed a tool that reduced costs by 20% by optimizing Snowflake usage analytics.</p>
+    </div>
+    <div class="card">
+      <h3>Tableau to Power BI Migration Tool</h3>
+      <p>Created an out-of-the-box tool reducing migration costs by 50% with minimal effort.</p>
+    </div>
+    <div class="card">
+      <h3>Accretor for Microsoft Fabric</h3>
+      <p>Designed a migration tool for MS Fabric, reducing manpower by 60% across multiple sources.</p>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <h2>Certifications</h2>
+  <div class="certifications">
+    <div class="card"><strong>Microsoft Certified: Azure Solutions Architect Expert</strong></div>
+    <div class="card"><strong>Microsoft Certified Fabric Analytics Engineer</strong></div>
+    <div class="card"><strong>Microsoft Certified Power BI Developer (70-778)</strong></div>
+    <div class="card"><strong>Microsoft Certified Professional SQL Developer (70-761)</strong></div>
+    <div class="card"><strong>Snowflake (SnowPro Core)</strong></div>
+  </div>
+</section>
+
+<section id="accelerators">
+  <h2>Accelerators</h2>
+  <div class="accelerators">
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">Snowflake Cost Estimator</div>
+        <div class="flip-card-back">eveloped a tool that reduced costs by 25% by optimizing Snowflake usage analytics.</div>
+      </div>
+    </div>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">Tableau to Power BI Migration Tool</div>
+        <div class="flip-card-back">Created an out-of-the-box tool reducing migration costs by 60% with minimal effort</div>
+      </div>
+    </div>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">Accelerator for Microsoft Fabric</div>
+        <div class="flip-card-back">Designed a migration tool for MS Fabric, reducing manpower by 60% across multiple sources</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Me</h2>
+  <p><span class="contact-icon">✉</span> Email: kirankumarmaddipati@gmail.com</p>
+  <p><span class="contact-icon">☎</span> Phone: +91-7989184343</p>
+  <p><span class="contact-icon">⇦</span> LinkedIn: <a href="https://www.linkedin.com/in/kiran-k-a593b8117/" target="_blank">linkedin.com/in/kirankumarmaddipati</a></p>
+  <a href="mailto:kirankumarmaddipati@gmail.com" class="btn">Hire Me</a>
+</section>
+
+<footer>
+  <p>© 2025 Kiran Kumar Maddipati | Data Architect</p>
+</footer>
+
+<!-- Scroll to Top Arrow -->
+<div class="scroll-to-top" onclick="scrollToTop()"></div>
+
+<script>
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+window.addEventListener('scroll', function() {
+  var scrollButton = document.querySelector('.scroll-to-top');
+  if (window.scrollY > 300) {
+    scrollButton.classList.add('show');
+  } else {
+    scrollButton.classList.remove('show');
+  }
+});
+</script>
+</body>
+</html>
