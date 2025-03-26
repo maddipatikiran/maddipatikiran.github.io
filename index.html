@@ -12,7 +12,7 @@ body {
   background-color: #f9f9f9;
   text-align: center;
   position: relative;
-  overflow-x: hidden; /* Prevent horizontal scroll on small screens */
+  overflow-x: hidden;
 }
 
 header {
@@ -32,7 +32,6 @@ header {
   to { opacity: 1; transform: scale(1) rotate(0deg); }
 }
 
-/* Enhanced Pie Chart Animation */
 .pie-chart-container {
   position: absolute;
   top: 50%;
@@ -106,13 +105,13 @@ header h1 {
   color: #d0f400;
   position: relative;
   z-index: 2;
-  animation: textGlow 2s infinite alternate;
+  animation: textGlow 0s infinite alternate;
 }
 
 header p {
   position: relative;
   z-index: 2;
-  animation: slideUp 1.5s ease forwards 0.5s;
+  animation: slideUp 0s ease forwards 0s;
   opacity: 0;
 }
 
@@ -235,7 +234,6 @@ h2::before {
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* Skills Section Colors */
 .skills .card:nth-child(1) { background: #bbdefb; }
 .skills .card:nth-child(2) { background: #e1bee7; }
 .skills .card:nth-child(3) { background: #c8e6c9; }
@@ -245,19 +243,18 @@ h2::before {
 .skills .card:nth-child(7) { background: #b2dfdb; }
 .skills .card:nth-child(8) { background: #ffcc80; }
 
-/* Projects Section Colors */
 .projects .card:nth-child(1) { background: #cdb4db; }
 .projects .card:nth-child(2) { background: #bde0fe; }
 .projects .card:nth-child(3) { background: #74c69d; }
+.projects .card:nth-child(4) { background: #f8bbd0; }
+.projects .card:nth-child(5) { background: #e6ee9c; }
 
-/* Certifications Section Colors */
 .certifications .card:nth-child(1) { background: #b2dfdb; }
 .certifications .card:nth-child(2) { background: #ffcc80; }
 .certifications .card:nth-child(3) { background: #c5cae9; }
 .certifications .card:nth-child(4) { background: #ef9a9a; }
 .certifications .card:nth-child(5) { background: #bbdefb; }
 
-/* Enhanced Accelerator Flip Cards */
 .accelerators {
   display: flex;
   justify-content: center;
@@ -381,7 +378,6 @@ p, a { font-size: 1.1em; line-height: 1.6; }
   100% { opacity: 1; transform: scale(1); }
 }
 
-/* Enhanced Scroll to Top Arrow */
 .scroll-to-top {
   position: fixed;
   bottom: 20px;
@@ -427,7 +423,6 @@ p, a { font-size: 1.1em; line-height: 1.6; }
   transform: translateY(-5px);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   header { padding: 40px 20px; }
   header h1 { font-size: 2.2em; }
@@ -498,16 +493,24 @@ p, a { font-size: 1.1em; line-height: 1.6; }
   <h2>Key Projects</h2>
   <div class="projects">
     <div class="card">
-      <h3>Snowflake Cost Estimator</h3>
-      <p>Engineered a cost-optimization tool leveraging Snowflake usage analytics, achieving a 20% reduction in operational costs for clients by identifying inefficiencies and recommending resource adjustments.</p>
+      <h3>Tableau to Power BI Migration</h3>
+      <p>Migrated 300+ reports using a custom-built accelerator, reducing implementation costs by 60%</p>
     </div>
     <div class="card">
-      <h3>Tableau to Power BI Migration Tool</h3>
-      <p>Developed an innovative, reusable migration framework that slashed conversion costs by 50% and accelerated dashboard migrations with minimal manual intervention, enhancing client adoption of Power BI.</p>
+      <h3>Cloud Data Warehousing</h3>
+      <p>Designed an Azure Synapse solution for a labels printing client, integrating data via Azure Data Factory and enhancing analytics with Spark-powered transformations and Power BI visualizations.</p>
     </div>
     <div class="card">
-      <h3>Accelerator for Microsoft Fabric</h3>
-      <p>Designed an automated migration accelerator for Microsoft Fabric, streamlining data integration from diverse sources and reducing manpower requirements by 60%, delivering faster time-to-value.</p>
+      <h3>Data Quality Framework</h3>
+      <p>Led development of an automated data quality framework in Snowflake for an insurance client, using stored procedures and Power BI to track and resolve data issues efficiently.</p>
+    </div>
+    <div class="card">
+      <h3>Building DWH and Power BI Reports</h3>
+      <p>Engineered a Snowflake data warehouse for an insurance client, automating data sync with SnapLogic pipelines and delivering insightful Power BI reports with enhanced security.</p>
+    </div>
+    <div class="card">
+      <h3>Over Time and Capex Report</h3>
+      <p>Developed a data warehouse and Power BI reports for a data center client, leveraging SQL Server and Azure Data Factory to track capex, overtime hours, and headcount metrics.</p>
     </div>
   </div>
 </section>
@@ -541,7 +544,7 @@ p, a { font-size: 1.1em; line-height: 1.6; }
     <div class="flip-card">
       <div class="flip-card-inner">
         <div class="flip-card-front">Accelerator for Microsoft Fabric</div>
-        <div class="flip-card-back">Developed an automation tool that reduced manpower needs by 50% for Microsoft Fabric migrations across multiple data sources.</div>
+        <div class="flip-card-back">Developed an automation tool that reduced manpower needs by 60% for Microsoft Fabric migrations across multiple data sources.</div>
       </div>
     </div>
   </div>
@@ -559,7 +562,6 @@ p, a { font-size: 1.1em; line-height: 1.6; }
   <p>© 2025 Kiran Kumar Maddipati | Data Architect & Cloud Consultant</p>
 </footer>
 
-<!-- Scroll to Top Arrow -->
 <div class="scroll-to-top" onclick="scrollToTop()"></div>
 
 <script>
@@ -579,7 +581,6 @@ window.addEventListener('scroll', function() {
   }
 });
 
-// Trigger animations on section visibility
 const sections = document.querySelectorAll('section');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -596,7 +597,6 @@ sections.forEach(section => {
 </script>
 
 <style>
-/* Animation trigger for sections */
 .animate-on-scroll { opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; }
 .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
 #about.animate-on-scroll { transform: translateY(50px); }
