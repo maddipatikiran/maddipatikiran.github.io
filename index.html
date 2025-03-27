@@ -290,6 +290,12 @@ h2::before {
   animation: flipPulse 3s infinite ease-in-out;
 }
 
+@keyframes flipPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
 .flip-card:hover .flip-card-inner {
   animation: flipBounce 0.8s ease forwards;
 }
@@ -403,6 +409,12 @@ p, a { font-size: 1.1em; line-height: 1.6; }
   animation: bounceIn 0.6s ease forwards;
 }
 
+@keyframes bounceIn {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
 .scroll-to-top:hover {
   opacity: 1;
   transform: scale(1.2) rotate(360deg);
@@ -411,6 +423,12 @@ p, a { font-size: 1.1em; line-height: 1.6; }
 
 .scroll-to-top.show:not(:hover) {
   animation: pulseArrow 1.5s infinite ease-in-out;
+}
+
+@keyframes pulseArrow {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
 .scroll-to-top::before {
@@ -448,6 +466,192 @@ p, a { font-size: 1.1em; line-height: 1.6; }
   h2 { font-size: 1.2em; }
   p, a { font-size: 1em; }
 }
+
+/* Updated Timeline Styles with Vertical Line and Alternating Tiles */
+.timeline-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 30px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column; /* Changed to vertical */
+  gap: 20px;
+  position: relative;
+  padding: 0 100px; /* Increased padding to accommodate tiles on left and right */
+  min-height: 600px; /* Ensure enough height for vertical layout */
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: #115f9a;
+  transform: translateX(-50%);
+  z-index: 0;
+  animation: timelineGrow 2s ease forwards;
+}
+
+@keyframes timelineGrow {
+  0% { height: 0; }
+  100% { height: 100%; }
+}
+
+.timeline-item {
+  position: relative;
+  height: 150px; /* Fixed height for each item */
+  opacity: 0;
+  animation: slideInTimeline 0.8s ease forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes slideInTimeline {
+  0% { opacity: 0; transform: translateX(30px) scale(0.95); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border: 2px solid #115f9a;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Connecting stem for alternating tiles */
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 60px; /* Length of the stem */
+  height: 2px;
+  background: #115f9a;
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+
+/* Odd items (left of the line) */
+.timeline-item:nth-child(odd) .timeline-content {
+  position: absolute;
+  right: 60px; /* Position to the left of the line */
+  left: 0;
+  width: calc(50% - 80px); /* Adjust width to fit on the left */
+}
+
+.timeline-item:nth-child(odd)::after {
+  left: 50%;
+  transform: translateX(-100%); /* Stem extends to the left */
+}
+
+/* Even items (right of the line) */
+.timeline-item:nth-child(even) .timeline-content {
+  position: absolute;
+  left: calc(50% + 60px); /* Position to the right of the line */
+  width: calc(50% - 80px); /* Adjust width to fit on the right */
+}
+
+.timeline-item:nth-child(even)::after {
+  right: 50%;
+  transform: translateX(100%); /* Stem extends to the right */
+}
+
+.timeline-item:hover::before {
+  transform: translate(-50%, -50%) scale(1.5);
+  background: #22a7f0;
+  border-color: #22a7f0;
+}
+
+.timeline-item:hover::after {
+  background: #22a7f0;
+}
+
+.timeline-content {
+  background: #f5faff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.timeline-item:hover .timeline-content {
+  transform: translateX(5px); /* Slight shift on hover */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  background: #e6f0fa;
+}
+
+.timeline-content h3 {
+  color: #115f9a;
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+.timeline-item:hover .timeline-content h3 {
+  color: #22a7f0;
+}
+
+.timeline-content p {
+  font-size: 0.9em;
+  color: #37474F;
+  line-height: 1.4;
+}
+
+/* Responsive adjustments for timeline */
+@media (max-width: 768px) {
+  .timeline { padding: 0 50px; }
+  .timeline-item { height: 120px; }
+  .timeline-item:nth-child(odd) .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content {
+    width: calc(50% - 60px);
+  }
+  .timeline-item:nth-child(odd) .timeline-content { right: 50px; }
+  .timeline-item:nth-child(even) .timeline-content { left: calc(50% + 50px); }
+  .timeline-item::after { width: 50px; }
+  .timeline-content h3 { font-size: 1em; }
+  .timeline-content p { font-size: 0.85em; }
+}
+
+@media (max-width: 480px) {
+  .timeline { padding: 0 30px; }
+  .timeline-item { height: 100px; }
+  .timeline-item:nth-child(odd) .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content {
+    width: calc(50% - 40px);
+  }
+  .timeline-item:nth-child(odd) .timeline-content { right: 40px; }
+  .timeline-item:nth-child(even) .timeline-content { left: calc(50% + 40px); }
+  .timeline-item::after { width: 40px; }
+  .timeline-content { padding: 10px; }
+  .timeline-content h3 { font-size: 0.9em; }
+  .timeline-content p { font-size: 0.8em; }
+}
+
+/* Scroll Animation Styles */
+.animate-on-scroll { opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; }
+.animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+#about.animate-on-scroll { transform: translateY(50px); }
+#timeline.animate-on-scroll { transform: translateX(-50px); }
+#skills.animate-on-scroll { transform: translateX(-50px); }
+#projects.animate-on-scroll { transform: translateX(50px); }
+#certifications.animate-on-scroll { transform: translateY(50px); }
+#accelerators.animate-on-scroll { transform: translateX(-50px); }
+#contact.animate-on-scroll { transform: translateY(50px); }
 </style>
 </head>
 
@@ -464,6 +668,7 @@ p, a { font-size: 1.1em; line-height: 1.6; }
 
 <nav>
   <a href="#about">About Me</a>
+  <a href="#timeline">Timeline</a>
   <a href="#skills">Skills</a>
   <a href="#projects">Projects</a>
   <a href="#certifications">Certifications</a>
@@ -474,6 +679,44 @@ p, a { font-size: 1.1em; line-height: 1.6; }
 <section id="about">
   <h2>About Me</h2>
   <p>I am a Microsoft Certified Azure Solutions Architect with over 8 years of experience in data analytics, business intelligence, and cloud-based solutions. I specialize in designing scalable BI architectures and delivering data-driven strategies that enhance operational efficiency and drive business success. My expertise spans SQL, Microsoft Fabric, Snowflake, Power BI, and Azure BI tools, complemented by a proven track record in consulting, freelancing, and pre-sales activities. Passionate about solving complex challenges, I thrive in leading cross-functional teams and engaging with clients to craft tailored, impactful solutions.</p>
+</section>
+
+<section id="timeline">
+  <h2>Professional Timeline</h2>
+  <div class="timeline-container">
+    <div class="timeline">
+      <div class="timeline-item" style="--delay: 0.2s;">
+        <div class="timeline-content">
+          <h3>Technical Architect</h3>
+          <p><strong>Acuvate</strong> · Full-time<br>Oct 2024 - Present <br>Hyderabad, Telangana, India</p>
+        </div>
+      </div>
+      <div class="timeline-item" style="--delay: 0.4s;">
+        <div class="timeline-content">
+          <h3>Data Team Lead</h3>
+          <p><strong>Tezo</strong> · Full-time<br>Aug 2022 - Sep 2024 <br>Hyderabad, Telangana, India</p>
+        </div>
+      </div>
+      <div class="timeline-item" style="--delay: 0.6s;">
+        <div class="timeline-content">
+          <h3>Senior Software Engineer</h3>
+          <p><strong>Tezo</strong> · Full-time<br>Apr 2021 - Aug 2022<br>Hyderabad, Telangana, India</p>
+        </div>
+      </div>
+      <div class="timeline-item" style="--delay: 0.8s;">
+        <div class="timeline-content">
+          <h3>Software Engineer - Data & Analytics</h3>
+          <p><strong>Tezo</strong> · Full-time<br>Jan 2018 - Apr 2021<br>Hyderabad, Telangana, India</p>
+        </div>
+      </div>
+      <div class="timeline-item" style="--delay: 1s;">
+        <div class="timeline-content">
+          <h3>Internship</h3>
+          <p><strong>Miracle Software Systems, Inc</strong> · Internship<br>Apr 2017 - Jun 2017 <br>Vishakhapatnam, Andhra Pradesh, India</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="skills">
@@ -595,16 +838,5 @@ sections.forEach(section => {
   observer.observe(section);
 });
 </script>
-
-<style>
-.animate-on-scroll { opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; }
-.animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
-#about.animate-on-scroll { transform: translateY(50px); }
-#skills.animate-on-scroll { transform: translateX(-50px); }
-#projects.animate-on-scroll { transform: translateX(50px); }
-#certifications.animate-on-scroll { transform: translateY(50px); }
-#accelerators.animate-on-scroll { transform: translateX(-50px); }
-#contact.animate-on-scroll { transform: translateY(50px); }
-</style>
 </body>
 </html>
