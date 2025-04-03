@@ -17,8 +17,6 @@ body {
 
 header {
   background: linear-gradient(to bottom, #1e3a8a, #3b82f6);
-  background-size: cover;
-  background-position: center;
   color: #fff;
   padding: 60px 30px;
   border-radius: 12px;
@@ -105,19 +103,18 @@ header h1 {
   color: #d0f400;
   position: relative;
   z-index: 2;
-  animation: textGlow 0s infinite alternate;
 }
 
 header p {
   position: relative;
   z-index: 2;
-  animation: slideUp 0s ease forwards 0s;
+  animation: slideUp 0.5s ease forwards 0.5s;
   opacity: 0;
 }
 
-@keyframes textGlow {
-  0% { text-shadow: 0 0 5px #d0f400; }
-  100% { text-shadow: 0 0 20px #d0f400, 0 0 30px #9ab300; }
+header .btn {
+  animation: slideUp 0.5s ease forwards 1s;
+  opacity: 0;
 }
 
 @keyframes slideUp {
@@ -208,24 +205,6 @@ h2::before {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.card:hover::before {
-  opacity: 1;
 }
 
 .card:hover {
@@ -241,7 +220,6 @@ h2::before {
 .skills .card:nth-child(5) { background: #f8bbd0; }
 .skills .card:nth-child(6) { background: #e6ee9c; }
 .skills .card:nth-child(7) { background: #b2dfdb; }
-.skills .card:nth-child(8) { background: #ffcc80; }
 
 .projects .card:nth-child(1) { background: #cdb4db; }
 .projects .card:nth-child(2) { background: #bde0fe; }
@@ -256,10 +234,7 @@ h2::before {
 .certifications .card:nth-child(5) { background: #bbdefb; }
 
 .accelerators {
-  display: flex;
-  justify-content: center;
   gap: 30px;
-  flex-wrap: wrap;
 }
 
 .flip-card {
@@ -267,7 +242,6 @@ h2::before {
   width: 350px;
   height: 250px;
   perspective: 1000px;
-  transition: transform 0.3s ease;
 }
 
 .flip-card-inner {
@@ -286,20 +260,6 @@ h2::before {
   box-shadow: 0 12px 24px rgba(0,0,0,0.3);
 }
 
-.flip-card:not(:hover) .flip-card-inner {
-  animation: flipPulse 3s infinite ease-in-out;
-}
-
-@keyframes flipPulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-  100% { transform: scale(1); }
-}
-
-.flip-card:hover .flip-card-inner {
-  animation: flipBounce 0.8s ease forwards;
-}
-
 .flip-card-front, .flip-card-back {
   position: absolute;
   width: 100%;
@@ -312,7 +272,6 @@ h2::before {
   justify-content: center;
   font-size: 1.2em;
   color: #fff;
-  transition: background 0.3s ease;
 }
 
 .flip-card-front { background-color: #48b5c4; }
@@ -320,9 +279,6 @@ h2::before {
   background-color: #76c68f;
   transform: rotateY(180deg);
 }
-
-.flip-card-front:hover { background-color: #5ac8d8; }
-.flip-card-back:hover { background-color: #87d7a0; }
 
 .btn {
   display: inline-block;
@@ -333,26 +289,6 @@ h2::before {
   border-radius: 6px;
   margin-top: 20px;
   transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255,255,255,0.5);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.4s ease, height 0.4s ease;
-}
-
-.btn:hover::after {
-  width: 200px;
-  height: 200px;
 }
 
 .btn:hover {
@@ -365,7 +301,7 @@ p, a { font-size: 1.1em; line-height: 1.6; }
 
 .contact-icon {
   margin-right: 10px;
-  color: #115f9a;
+  the: #115f9a;
   font-size: 1.2em;
   transition: transform 0.3s ease;
 }
@@ -377,11 +313,6 @@ p, a { font-size: 1.1em; line-height: 1.6; }
 @keyframes fadeInUp {
   0% { opacity: 0; transform: translateY(50px) rotate(1deg); }
   100% { opacity: 1; transform: translateY(0) rotate(0deg); }
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; transform: scale(0.9); }
-  100% { opacity: 1; transform: scale(1); }
 }
 
 .scroll-to-top {
@@ -406,13 +337,6 @@ p, a { font-size: 1.1em; line-height: 1.6; }
 .scroll-to-top.show {
   opacity: 0.8;
   visibility: visible;
-  animation: bounceIn 0.6s ease forwards;
-}
-
-@keyframes bounceIn {
-  0% { transform: scale(0); opacity: 0; }
-  60% { transform: scale(1.2); opacity: 0.8; }
-  100% { transform: scale(1); opacity: 0.8; }
 }
 
 .scroll-to-top:hover {
@@ -421,24 +345,9 @@ p, a { font-size: 1.1em; line-height: 1.6; }
   background-color: #22a7f0;
 }
 
-.scroll-to-top.show:not(:hover) {
-  animation: pulseArrow 1.5s infinite ease-in-out;
-}
-
-@keyframes pulseArrow {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
-
 .scroll-to-top::before {
   content: "\2191";
   font-size: 24px;
-  transition: transform 0.3s ease;
-}
-
-.scroll-to-top:hover::before {
-  transform: translateY(-5px);
 }
 
 @media (max-width: 768px) {
@@ -467,22 +376,20 @@ p, a { font-size: 1.1em; line-height: 1.6; }
   p, a { font-size: 1em; }
 }
 
-/* Updated Timeline Styles with Vertical Line and Alternating Tiles */
 .timeline-container {
   max-width: 1200px;
   margin: 20px auto;
   padding: 30px;
   position: relative;
-  overflow-x: hidden;
 }
 
 .timeline {
   display: flex;
-  flex-direction: column; /* Changed to vertical */
+  flex-direction: column;
   gap: 20px;
   position: relative;
-  padding: 0 100px; /* Increased padding to accommodate tiles on left and right */
-  min-height: 600px; /* Ensure enough height for vertical layout */
+  padding: 0 100px;
+  min-height: 600px;
 }
 
 .timeline::before {
@@ -505,7 +412,7 @@ p, a { font-size: 1.1em; line-height: 1.6; }
 
 .timeline-item {
   position: relative;
-  height: 150px; /* Fixed height for each item */
+  height: 150px;
   opacity: 0;
   animation: slideInTimeline 0.8s ease forwards;
   animation-delay: var(--delay);
@@ -528,54 +435,39 @@ p, a { font-size: 1.1em; line-height: 1.6; }
   border-radius: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
 }
 
-/* Connecting stem for alternating tiles */
 .timeline-item::after {
   content: '';
   position: absolute;
   top: 50%;
-  width: 60px; /* Length of the stem */
+  width: 60px;
   height: 2px;
   background: #115f9a;
   z-index: 1;
-  transition: background 0.3s ease;
 }
 
-/* Odd items (left of the line) */
 .timeline-item:nth-child(odd) .timeline-content {
   position: absolute;
-  right: 60px; /* Position to the left of the line */
+  right: 60px;
   left: 0;
-  width: calc(50% - 80px); /* Adjust width to fit on the left */
+  width: calc(50% - 80px);
 }
 
 .timeline-item:nth-child(odd)::after {
   left: 50%;
-  transform: translateX(-100%); /* Stem extends to the left */
+  transform: translateX(-100%);
 }
 
-/* Even items (right of the line) */
 .timeline-item:nth-child(even) .timeline-content {
   position: absolute;
-  left: calc(50% + 60px); /* Position to the right of the line */
-  width: calc(50% - 80px); /* Adjust width to fit on the right */
+  left: calc(50% + 60px);
+  width: calc(50% - 80px);
 }
 
 .timeline-item:nth-child(even)::after {
   right: 50%;
-  transform: translateX(100%); /* Stem extends to the right */
-}
-
-.timeline-item:hover::before {
-  transform: translate(-50%, -50%) scale(1.5);
-  background: #22a7f0;
-  border-color: #22a7f0;
-}
-
-.timeline-item:hover::after {
-  background: #22a7f0;
+  transform: translateX(100%);
 }
 
 .timeline-content {
@@ -585,13 +477,6 @@ p, a { font-size: 1.1em; line-height: 1.6; }
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   position: relative;
   z-index: 1;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-}
-
-.timeline-item:hover .timeline-content {
-  transform: translateX(5px); /* Slight shift on hover */
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  background: #e6f0fa;
 }
 
 .timeline-content h3 {
@@ -599,11 +484,6 @@ p, a { font-size: 1.1em; line-height: 1.6; }
   font-size: 1.2em;
   font-weight: 600;
   margin-bottom: 5px;
-  transition: color 0.3s ease;
-}
-
-.timeline-item:hover .timeline-content h3 {
-  color: #22a7f0;
 }
 
 .timeline-content p {
@@ -612,7 +492,6 @@ p, a { font-size: 1.1em; line-height: 1.6; }
   line-height: 1.4;
 }
 
-/* Responsive adjustments for timeline */
 @media (max-width: 768px) {
   .timeline { padding: 0 50px; }
   .timeline-item { height: 120px; }
@@ -642,7 +521,6 @@ p, a { font-size: 1.1em; line-height: 1.6; }
   .timeline-content p { font-size: 0.8em; }
 }
 
-/* Scroll Animation Styles */
 .animate-on-scroll { opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; }
 .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
 #about.animate-on-scroll { transform: translateY(50px); }
@@ -652,6 +530,39 @@ p, a { font-size: 1.1em; line-height: 1.6; }
 #certifications.animate-on-scroll { transform: translateY(50px); }
 #accelerators.animate-on-scroll { transform: translateX(-50px); }
 #contact.animate-on-scroll { transform: translateY(50px); }
+
+footer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.viewer-counter {
+  font-size: 0.9em;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  right: 30px;
+}
+
+.counter-icon {
+  color: #115f9a;
+  font-size: 1.1em;
+}
+
+@media (max-width: 768px) {
+  footer {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .viewer-counter {
+    position: static;
+    margin-top: 10px;
+  }
+}
 </style>
 </head>
 
@@ -664,6 +575,7 @@ p, a { font-size: 1.1em; line-height: 1.6; }
   </div>
   <h1>Kiran Kumar Maddipati</h1>
   <p>Certified Azure Solutions Architect | Data Engineering Expert | Freelance Consultant</p>
+ 
 </header>
 
 <nav>
@@ -727,7 +639,7 @@ p, a { font-size: 1.1em; line-height: 1.6; }
     <div class="card"><strong>BI Tools:</strong><br>Power BI, Tableau, SQL Server Reporting Services (SSRS)</div>
     <div class="card"><strong>ETL Tools:</strong><br>SnapLogic, Azure Data Factory, SQL Server Integration Services (SSIS)</div>
     <div class="card"><strong>Data Platforms:</strong><br>Microsoft Fabric, Databricks, Snowflake</div>
-    <div class="card"><strong>Version Control:</strong><br>GitHub, Azure DevOps</div>
+    <div class="card"><strong>Version Control:</strong><br>GitHuthe, Azure DevOps</div>
     <div class="card"><strong>Pre-Sales Expertise:</strong><br>Technical Demonstrations, RFPs, SOWs, Solution Architecture Design</div>
   </div>
 </section>
@@ -802,7 +714,11 @@ p, a { font-size: 1.1em; line-height: 1.6; }
 </section>
 
 <footer>
-  <p>© 2025 Kiran Kumar Maddipati | Data Architect & Cloud Consultant</p>
+  <p>                     <center>   © 2025 Kiran Kumar Maddipati | Data Architect & Cloud Consultant </center></p>
+  <div class="viewer-counter">
+    <span class="counter-icon">👁️</span>
+    <span> <span id="viewCount">0</span></span>
+  </div>
 </footer>
 
 <div class="scroll-to-top" onclick="scrollToTop()"></div>
@@ -837,6 +753,17 @@ sections.forEach(section => {
   section.classList.add('animate-on-scroll');
   observer.observe(section);
 });
+
+// Simple visitor counter using localStorage
+function updateVisitorCount() {
+  let count = localStorage.getItem('visitorCount') || 0;
+  count = parseInt(count) + 1;
+  localStorage.setItem('visitorCount', count);
+  document.getElementById('viewCount').textContent = count;
+}
+
+// Update count when page loads
+window.addEventListener('load', updateVisitorCount);
 </script>
 </body>
 </html>
